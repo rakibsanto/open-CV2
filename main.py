@@ -66,5 +66,3 @@ while True:
             break
 cap.release()
 cv2.destroyAllWindows()
-
-#https://www.youtube.com/watch?v=1LCb1PVqzeY
