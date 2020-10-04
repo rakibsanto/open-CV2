@@ -5,10 +5,8 @@ net = cv2.dnn.readNet('yolov3.weights','yolov3.cfg')
 classes = []
 with open('coco.names','r') as f:
     classes = f.read().splitlines()
-#print(classes)
 
 cap = cv2.VideoCapture('video.mp4') # camera dtect cap = cv2.VideoCapture(0)
-#img = cv2.imread('image.jpg')
 
 while True:
     _,img = cap.read()
@@ -16,9 +14,6 @@ while True:
 
     blob = cv2.dnn.blobFromImage(img,1/255,(416,416),(0,0,0),swapRB=True,crop=False)
 
-    #for b in blob:
-    #    for n, img_blob in enumerate(b):
-    #        cv2.imshow(str(n),img_blob)
 
     net.setInput(blob)
     output_layers_names = net.getUnconnectedOutLayersNames()
@@ -45,9 +40,9 @@ while True:
                 confidences.append((float(confidence)))
                 class_ids.append(class_id)
 
-    #print(len(boxes))
+
     indexes = cv2.dnn.NMSBoxes(boxes, confidences, 0.5, 0.4)
-    #print(indexes.flatten())
+   
     font = cv2.FONT_HERSHEY_PLAIN
     colors = np.random.uniform(0,255, size=(len(boxes),3))
 
